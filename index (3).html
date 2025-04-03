@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicação Premiada - Wtime</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Indique e Ganhe!</h2>
+    <p>Indique um amigo e ganhe 10% de desconto na sua próxima compra! E tem mais: seu amigo também recebe 10% para aproveitar agora. Todo mundo sai ganhando!</p>
+    <form id="indicacaoForm">
+        <input type="text" id="nomeIndicador" placeholder="Nome e Sobrenome" required>
+        <input type="text" id="telefoneIndicador" placeholder="DDD + Telefone" pattern="\d{10,11}" title="Informe o DDD seguido do número, sem espaços ou caracteres" required>
+        <input type="text" id="nomeIndicado" placeholder="Nome do Amigo" required>
+        <input type="text" id="telefoneIndicado" placeholder="DDD + Telefone" pattern="\d{10,11}" title="Informe o DDD seguido do número, sem espaços ou caracteres" required>
+        <button type="button" onclick="enviarWhatsApp()">Indicar e Enviar WhatsApp</button>
+    </form>
+
+    <script>
+        function enviarWhatsApp() {
+            const nomeIndicador = document.getElementById('nomeIndicador').value;
+            const telefoneIndicador = document.getElementById('telefoneIndicador').value;
+            const nomeIndicado = document.getElementById('nomeIndicado').value;
+            const telefoneIndicado = document.getElementById('telefoneIndicado').value;
+            
+            if (nomeIndicador && telefoneIndicador && nomeIndicado && telefoneIndicado) {
+                const mensagemIndicado = `Fala, ${nomeIndicado}! Beleza? Quero te indicar uma loja onde sempre compro meus relógios. Eles têm modelos incríveis. O atendimento é excelente, e os preços valem muito a pena! E o melhor: Se você comprar, ganha 10% de desconto só por ter sido indicado por mim. Dá uma olhada:
+
+Chame neste WhatsApp para garantir seu desconto: https://wa.me/5511949572186?text=${encodeURIComponent(`Olá, fui indicado por ${nomeIndicador} e gostaria de aproveitar o desconto de 10%!`)}`;
+                
+                window.open(`https://wa.me/55${telefoneIndicado}?text=${encodeURIComponent(mensagemIndicado)}`, '_blank');
+            } else {
+                alert("Por favor, preencha todos os campos!");
+            }
+        }
+    </script>
+</body>
+</html>
